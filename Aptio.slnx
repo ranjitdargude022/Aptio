@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Aptio.Api/Aptio.Api.csproj" />
+  <Project Path="Aptio.Application/Aptio.Application.csproj" />
+  <Project Path="Aptio.Domain/Aptio.Domain.csproj" />
+  <Project Path="Aptio.Infrastructure/Aptio.Infrastructure.csproj" />
+</Solution>
