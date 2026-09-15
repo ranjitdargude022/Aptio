@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aptio.Application.Authentication;
 
 namespace Aptio.Application.Services
 {
     public interface IUserService
     {
+       // Task<IEnumerable<User>> GetUsersAsync();
+        Task<UserResponse> AddUserAsync(UserRequest userRequest);
     }
 }
