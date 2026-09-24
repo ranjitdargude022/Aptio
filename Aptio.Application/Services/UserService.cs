@@ -15,6 +15,19 @@ namespace Aptio.Application.Services
             _mapper = mappper;
         }
 
+        public async Task<IEnumerable<User>> GetUsers()
+        {
+            var getUsers = await _userRepository.GetUsers();
+            return getUsers;
+
+        }
+
+        public async Task<User?>GetUsersById(long id)
+        {
+            var result = await _userRepository.GetUsersById(id);
+            return result;
+        }
+
         public async Task<UserResponse> AddUserAsync(UserRequest userRequest)
         {
             var user =  _mapper.Map<User>(userRequest);
@@ -23,6 +36,11 @@ namespace Aptio.Application.Services
             return response;
         }
 
+        public async Task<User?>Edit(User User)
+        {
+            var result = await _userRepository.Edit(User);
+            return result;
+        }
        
     }
 }

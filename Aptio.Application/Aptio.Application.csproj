@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Aptio.Domain\Aptio.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MediatR\Queries\" />
-  </ItemGroup>
-
 </Project>
