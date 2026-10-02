@@ -1,7 +1,11 @@
 using Aptio.Application;
 using Aptio.Infrastructure;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(builder.Configuration).Enrich.FromLogContext().CreateLogger();
+builder.Host.UseSerilog();
 
 // Add services to the container.
 
