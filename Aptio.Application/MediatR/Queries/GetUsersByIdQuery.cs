@@ -1,22 +1,27 @@
 ﻿using Aptio.Application.Services;
 using Aptio.Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Aptio.Application.MediatR.Queries
 {
     public record class GetUsersByIdQuery(long id) : IRequest<User>;
 
-    public class GetUsersByIdHandler(IUserService service) : IRequestHandler <GetUsersByIdQuery, User?>
+    public class GetUsersByIdHandler(IUserService service , ILogger<GetUserHandler> logger ) : IRequestHandler <GetUsersByIdQuery, User?>
     {
-        public async Task<User?> Handle(GetUsersByIdQuery request,CancellationToken cancellationToken)
+        public async Task<User?> Handle (GetUsersByIdQuery request,CancellationToken cancellationToken)
         {
-            return await service.GetUsersById(request.id);
+            logger.LogInformation( "Processing GetUsersById query for UserId {UserId}.", request.id);
+            var result = await service.GetUsersById(request.id);
+            if (result == null)
+            {
+                logger.LogWarning("User with Id {UserId} was not found.", request.id);
+
+                return null;
+            }
+
+            logger.LogInformation("GetUsersById query completed successfully for UserId {UserId}.",  request.id);
+            return result;
         }
     }
    
